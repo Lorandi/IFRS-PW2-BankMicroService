@@ -1,6 +1,6 @@
 package br.edu.ifrs.orch.service;
 
-import br.edu.ifrs.orch.client.AccountClient;
+import br.edu.ifrs.orch.client.AccountCustomerClient;
 import br.edu.ifrs.orch.dto.AccountDTO;
 import br.edu.ifrs.orch.dto.AccountTransferDTO;
 import br.edu.ifrs.orch.exception.ErrorHandler;
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class AccountCustomerService {
     @Inject
     @RestClient
-    AccountClient client;
+    AccountCustomerClient client;
 
     public void create() {
         try {

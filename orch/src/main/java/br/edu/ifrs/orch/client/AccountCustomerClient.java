@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Path("/api/v1/accounts")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface AccountClient {
+public interface AccountCustomerClient {
 
     @POST
     void create();
