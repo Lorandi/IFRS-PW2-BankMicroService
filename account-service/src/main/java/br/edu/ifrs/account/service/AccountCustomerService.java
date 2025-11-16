@@ -12,13 +12,13 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import java.math.BigDecimal;
 
 @ApplicationScoped
-public class CustomerService {
+public class AccountCustomerService {
 
     @Inject
     AccountRepository repository;
 
     @Inject
-    AuditService audit;
+    AccountAuditService audit;
 
     @Inject
     JsonWebToken jwt;
@@ -83,7 +83,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public Account withdraw(String accountId, BigDecimal amount) {
+    public void withdraw(String accountId, BigDecimal amount) {
         Long userId = getUserIdFromToken(jwt);
         try {
             verificaValorPositivo(amount);
@@ -96,7 +96,6 @@ public class CustomerService {
             repository.persist(account);
 
             audit.record("WITHDRAW", userId, null, accountId, amount, "SUCCESS", null);
-            return account;
 
         } catch (Exception e) {
             audit.record("WITHDRAW", userId, null, accountId, amount, "FAILURE", e.getMessage());

@@ -1,7 +1,7 @@
 package br.edu.ifrs.account.resource;
 
 import br.edu.ifrs.account.dto.AccountAuditDTO;
-import br.edu.ifrs.account.service.AuditService;
+import br.edu.ifrs.account.service.AccountAuditService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -12,10 +12,10 @@ import java.util.List;
 @Path("/api/v1/audit")
 @Produces(MediaType.APPLICATION_JSON)
 @RolesAllowed("AUDITOR")
-public class AuditResource {
+public class AccountAuditResource {
 
     @Inject
-    AuditService service;
+    AccountAuditService service;
 
     @GET
     public List<AccountAuditDTO> listAll() {

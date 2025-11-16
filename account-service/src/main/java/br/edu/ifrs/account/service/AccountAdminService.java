@@ -9,13 +9,13 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class AdminService {
+public class AccountAdminService {
 
     @Inject
     AccountRepository repository;
 
     @Inject
-    AuditService audit;
+    AccountAuditService audit;
 
     public List<Account> listAll() {
         return repository.listAll();

@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.UUID;
 
 @ApplicationScoped
-public class AuditService {
+public class AccountAuditService {
 
-    private static final Logger LOG = Logger.getLogger(AuditService.class);
+    private static final Logger LOG = Logger.getLogger(AccountAuditService.class);
 
     @Inject
     AccountAuditRepository repository;

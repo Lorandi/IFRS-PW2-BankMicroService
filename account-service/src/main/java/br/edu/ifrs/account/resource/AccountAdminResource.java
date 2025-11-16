@@ -1,7 +1,7 @@
 package br.edu.ifrs.account.resource;
 
 import br.edu.ifrs.account.entity.Account;
-import br.edu.ifrs.account.service.AdminService;
+import br.edu.ifrs.account.service.AccountAdminService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -15,10 +15,10 @@ import java.util.Map;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RolesAllowed("ADMIN")
-public class AdminResource {
+public class AccountAdminResource {
 
     @Inject
-    AdminService service;
+    AccountAdminService service;
 
     @GET
     public List<Account> listAll() {

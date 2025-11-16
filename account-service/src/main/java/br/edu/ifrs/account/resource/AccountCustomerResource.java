@@ -2,7 +2,7 @@ package br.edu.ifrs.account.resource;
 
 import br.edu.ifrs.account.dto.AccountDTO;
 import br.edu.ifrs.account.dto.AccountTransferDTO;
-import br.edu.ifrs.account.service.CustomerService;
+import br.edu.ifrs.account.service.AccountCustomerService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -18,10 +18,10 @@ import java.util.Map;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RolesAllowed("CUSTOMER")
-public class CustomerResource {
+public class AccountCustomerResource {
 
     @Inject
-    CustomerService service;
+    AccountCustomerService service;
 
      @POST
     @Transactional
