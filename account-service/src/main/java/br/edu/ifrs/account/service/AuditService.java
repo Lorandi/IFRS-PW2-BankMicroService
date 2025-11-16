@@ -56,11 +56,12 @@ public class AuditService {
     }
 
     public List<AccountAuditDTO> byOwner(Long ownerId) {
-        return repository.list("ownerId", ownerId);
+
+        return getAccountAuditDTOS( repository.list("ownerId", ownerId));
     }
 
     public List<AccountAuditDTO> byAccountId(String accountId) {
-        return getAccountAuditDTOS(repository.find(repository.list("sourceAccountId = ?1 or targetAccountId = ?1", accountId));
+        return getAccountAuditDTOS(repository.list("sourceAccountId = ?1 or targetAccountId = ?1", accountId));
 
     }
 
