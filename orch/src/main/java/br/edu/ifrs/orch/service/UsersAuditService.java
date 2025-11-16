@@ -1,6 +1,6 @@
 package br.edu.ifrs.orch.service;
 
-import br.edu.ifrs.orch.client.AdminAuditClient;
+import br.edu.ifrs.orch.client.UserAuditClient;
 import br.edu.ifrs.orch.dto.UserAuditDTO;
 import br.edu.ifrs.orch.exception.ErrorHandler;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -14,7 +14,7 @@ public class UsersAuditService {
 
     @Inject
     @RestClient
-    AdminAuditClient client;
+    UserAuditClient client;
 
     public List<UserAuditDTO>listAll() {
         try {

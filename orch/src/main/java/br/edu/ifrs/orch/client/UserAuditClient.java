@@ -14,7 +14,7 @@ import java.util.List;
 @Path("/api/v1/audit")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface AdminAuditClient {
+public interface UserAuditClient {
 
     @GET
     List<UserAuditDTO> listAll();

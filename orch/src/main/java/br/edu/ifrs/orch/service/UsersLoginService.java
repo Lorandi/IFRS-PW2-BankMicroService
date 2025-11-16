@@ -1,6 +1,6 @@
 package br.edu.ifrs.orch.service;
 
-import br.edu.ifrs.orch.client.AuthClient;
+import br.edu.ifrs.orch.client.UserLoginClient;
 import br.edu.ifrs.orch.dto.UserLoginRequestDTO;
 import br.edu.ifrs.orch.dto.UserSignupRequestDTO;
 import br.edu.ifrs.orch.dto.UserTokenResponseDTO;
@@ -18,7 +18,7 @@ public class UsersLoginService {
 
     @Inject
     @RestClient
-    AuthClient client;
+    UserLoginClient client;
 
     public Response signup(UserSignupRequestDTO dto) {
         try {
