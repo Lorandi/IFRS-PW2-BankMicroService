@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.annotation.security.RolesAllowed;
 import java.util.Map;
 
-@Path("/orch/users")
+@Path("/orch/users/user")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RolesAllowed({"CUSTOMER", "ADMIN", "AUDITOR"})

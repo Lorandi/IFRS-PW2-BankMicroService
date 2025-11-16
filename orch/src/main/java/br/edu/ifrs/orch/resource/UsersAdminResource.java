@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
 
-@Path("/orch/api/v1/users")
+@Path("/orch/users/admim")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RolesAllowed("ADMIN")

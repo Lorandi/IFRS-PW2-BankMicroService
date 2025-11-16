@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-@Path("/orch/api/v1/audit")
+@Path("/orch/users/audit")
 @Produces(MediaType.APPLICATION_JSON)
 @RolesAllowed("AUDITOR")
 public class UsersAuditResource {
