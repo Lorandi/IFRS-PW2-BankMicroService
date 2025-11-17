@@ -1,0 +1,42 @@
+<div class="auth-container">
+
+  <h1>BankSim</h1>
+
+  <div class="tabs">
+    <button (click)="setMode('login')" [class.active]="mode === 'login'">
+      Login
+    </button>
+    <button (click)="setMode('signup')" [class.active]="mode === 'signup'">
+      Criar Conta
+    </button>
+  </div>
+
+  <!-- LOGIN -->
+  <form *ngIf="mode === 'login'" (ngSubmit)="login()">
+    <label>User ID</label>
+    <input type="number" [(ngModel)]="loginData.userId" name="loginUserId">
+
+    <label>Password</label>
+    <input type="password" [(ngModel)]="loginData.password" name="loginPassword">
+
+    <button class="btn">Entrar</button>
+    <p class="error">{{ loginError }}</p>
+  </form>
+
+  <!-- SIGNUP -->
+  <form *ngIf="mode === 'signup'" (ngSubmit)="signup()">
+    
+    <label>Username</label>
+    <input type="text" [(ngModel)]="signupData.username" name="signupUsername">
+
+    <label>Password</label>
+    <input type="password" [(ngModel)]="signupData.password" name="signupPassword">
+
+    <label>CPF</label>
+    <input type="text" [(ngModel)]="signupData.cpf" name="signupCpf">
+
+    <button class="btn">Criar Conta</button>
+    <p class="error">{{ signupError }}</p>
+  </form>
+
+</div>

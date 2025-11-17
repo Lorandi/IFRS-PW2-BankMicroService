@@ -1,0 +1,28 @@
+<div class="container">
+
+  <h2>Depósito</h2>
+
+  <div class="form">
+    <label>Número da Conta</label>
+    <input
+      type="text"
+      [(ngModel)]="accountId"
+      placeholder="Ex: CC_1"
+    />
+
+    <label>Valor do Depósito</label>
+    <input
+      type="number"
+      [(ngModel)]="amount"
+      placeholder="Ex: 100.00"
+    />
+
+    <button (click)="handleDeposit()" [disabled]="loading">
+      {{ loading ? 'Processando...' : 'Depositar' }}
+    </button>
+  </div>
+
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+</div>
