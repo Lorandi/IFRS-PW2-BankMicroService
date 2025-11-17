@@ -28,13 +28,6 @@ public class UsersResource {
     }
 
     @PATCH
-    @Path("/password")
-    public Response changePassword(UserChangePasswordDTO dto) {
-        service.changePassword(dto);
-        return Response.ok(Map.of("message", "Senha alterada com sucesso")).build();
-    }
-
-    @PATCH
     @Path("/change-password")
     public Response changePasswordWithAuth(UserChangePasswordDTO dto) {
         service.changePasswordWithAuth(dto);
