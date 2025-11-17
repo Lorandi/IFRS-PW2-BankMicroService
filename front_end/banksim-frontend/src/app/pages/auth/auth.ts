@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -31,7 +31,10 @@ export class AuthComponent {
   loginError = '';
   signupError = '';
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   setMode(mode: 'login' | 'signup') {
     this.mode = mode;
@@ -50,6 +53,7 @@ export class AuthComponent {
         this.loginError = '';
         this.isLoading = false;
         localStorage.setItem('token', res.token);
+         this.redirectByRole();
       },
       error: (err: any) => {
           this.isLoading = false;
@@ -62,6 +66,29 @@ export class AuthComponent {
       }
     });
   }
+
+  redirectByRole() {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const groups = payload.groups || [];
+
+  if (groups.includes('ADMIN')) {
+    this.router.navigate(['/admin']);
+    return;
+  }
+
+  if (groups.includes('AUDITOR')) {
+    this.router.navigate(['/auditor']);
+    return;
+  }
+
+  if (groups.includes('CUSTOMER')) {
+    this.router.navigate(['/customer']);
+    return;
+  }
+}
 
   // SIGNUP
   signup() {
