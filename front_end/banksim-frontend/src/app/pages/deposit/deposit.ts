@@ -39,7 +39,12 @@ export class DepositComponent {
         this.loading = false;
       },
       error: (err) => {
-        this.errorMessage = err.error?.message || 'Erro ao realizar depósito.';
+        
+        this.errorMessage = err.error?.error   // mensagem principal do ORCH
+                            || err.error?.message
+                            || err.error       // caso venha string JSON pura
+                            || 'Erro ao realizar depósito.';
+
         this.loading = false;
       }
     });
