@@ -3,7 +3,6 @@ package br.edu.ifrs.orch.resource;
 import br.edu.ifrs.orch.dto.AccountDTO;
 import br.edu.ifrs.orch.dto.AccountTransferDTO;
 import br.edu.ifrs.orch.service.AccountCustomerService;
-import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -16,12 +15,13 @@ import java.util.Map;
 @Path("/orch/accounts/customer")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@RolesAllowed("CUSTOMER")
+
 public class AccountCustomerResource {
 
     @Inject
     AccountCustomerService service;
 
+    @RolesAllowed("CUSTOMER")
     @POST
     public Response create() {
         service.create();
@@ -30,13 +30,13 @@ public class AccountCustomerResource {
                 .build();
     }
 
+    @RolesAllowed("CUSTOMER")
     @GET
     @Path("/owner")
     public AccountDTO getByOwnerId() {
         return service.getByOwnerId();
     }
 
-    @PermitAll
     @PATCH
     @Path("/{accountId}/deposit")
     public Response deposit(
@@ -47,6 +47,7 @@ public class AccountCustomerResource {
         return Response.ok(Map.of("message", "Depósito realizado com sucesso!")).build();
     }
 
+    @RolesAllowed("CUSTOMER")
     @PATCH
     @Path("/{accountId}/withdraw")
     public Response withdraw(
@@ -57,6 +58,7 @@ public class AccountCustomerResource {
         return Response.ok(Map.of("message", "Saque realizado com sucesso!")).build();
     }
 
+    @RolesAllowed("CUSTOMER")
     @PATCH
     @Path("/{accountId}/transfer")
     public Response transfer(

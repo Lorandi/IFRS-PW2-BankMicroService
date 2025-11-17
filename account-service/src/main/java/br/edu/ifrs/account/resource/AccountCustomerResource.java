@@ -3,7 +3,6 @@ package br.edu.ifrs.account.resource;
 import br.edu.ifrs.account.dto.AccountDTO;
 import br.edu.ifrs.account.dto.AccountTransferDTO;
 import br.edu.ifrs.account.service.AccountCustomerService;
-import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -17,13 +16,13 @@ import java.util.Map;
 @Path("/api/v1/accounts")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@RolesAllowed("CUSTOMER")
 public class AccountCustomerResource {
 
     @Inject
     AccountCustomerService service;
 
-     @POST
+    @RolesAllowed("CUSTOMER")
+    @POST
     @Transactional
     public Response create() {
         try {
@@ -40,6 +39,7 @@ public class AccountCustomerResource {
         }
     }
 
+    @RolesAllowed("CUSTOMER")
     @GET
     @Path("/owner/")
     public Response getByOwnerId() {
@@ -53,7 +53,6 @@ public class AccountCustomerResource {
         }
     }
 
-    @PermitAll
     @PATCH
     @Path("/{accountId}/deposit")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -77,6 +76,7 @@ public class AccountCustomerResource {
         }
     }
 
+    @RolesAllowed("CUSTOMER")
     @PATCH
     @Path("/{accountId}/withdraw")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -102,6 +102,7 @@ public class AccountCustomerResource {
         }
     }
 
+    @RolesAllowed("CUSTOMER")
     @PATCH
     @Path("/{accountId}/transfer")
     @Consumes(MediaType.APPLICATION_JSON)
