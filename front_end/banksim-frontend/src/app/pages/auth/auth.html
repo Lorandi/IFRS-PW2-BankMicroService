@@ -1,6 +1,6 @@
 <div class="auth-container">
 
-  <h1>BankSim</h1>
+  <h2>BankSim</h2>
 
   <div class="tabs">
     <button (click)="setMode('login')" [class.active]="mode === 'login'">
@@ -13,13 +13,16 @@
 
   <!-- LOGIN -->
   <form *ngIf="mode === 'login'" (ngSubmit)="login()">
-    <label>User ID</label>
+    <label>Login</label>
     <input type="number" [(ngModel)]="loginData.userId" name="loginUserId">
 
     <label>Password</label>
     <input type="password" [(ngModel)]="loginData.password" name="loginPassword">
 
-    <button class="btn">Entrar</button>
+    <button class="btn" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Entrar</span>
+      <span *ngIf="isLoading" class="spinner"></span>
+    </button>
     <p class="error">{{ loginError }}</p>
   </form>
 
@@ -38,5 +41,15 @@
     <button class="btn">Criar Conta</button>
     <p class="error">{{ signupError }}</p>
   </form>
+ 
+  <div style="margin: 5px 0; text-align: center;"><hr></div>
+
+  <div style="margin: 20px 0; text-align: center;">
+    <button
+      class="btn deposit-btn"
+      [routerLink]="['/deposit']">
+      💰 Fazer Depósito 
+    </button>
+  </div>
 
 </div>

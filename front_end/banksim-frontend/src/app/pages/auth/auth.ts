@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './auth.html',
   styleUrls: ['./auth.css']
 })
@@ -38,14 +39,20 @@ export class AuthComponent {
     this.signupError = '';
   }
 
+  isLoading = false;
   // LOGIN
   login() {
+    this.isLoading = true;
+    this.loginError = '';
+
     this.auth.login(this.loginData).subscribe({
       next: (res) => {
-        this.loginError = '';  
+        this.loginError = '';
+        this.isLoading = false;
         localStorage.setItem('token', res.token);
       },
       error: (err: any) => {
+          this.isLoading = false;
           this.loginError =
           err.error?.error   // mensagem principal do ORCH
           || err.error?.message
