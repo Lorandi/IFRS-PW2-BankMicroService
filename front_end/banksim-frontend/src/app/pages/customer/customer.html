@@ -1,0 +1,76 @@
+<div class="dashboard">
+
+  <!-- COLUNA 1 – MINHA CONTA -->
+  <div class="column">
+    <h2 class="section-title">Minha Conta</h2>
+
+    <div *ngIf="loading" class="loading-box">
+      <div class="spinner"></div>
+      <p>Carregando...</p>
+    </div>
+
+    <div *ngIf="successMessage" class="alert success-alert">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert error-alert">{{ errorMessage }}</div>
+
+    <div *ngIf="!account && !loading" class="card info-card">
+      <p>Você ainda não possui conta bancária.</p>
+      <button class="btn primary" (click)="createAccount()">Criar Conta</button>
+    </div>
+
+    <div *ngIf="account" class="card account-card">
+      <p><strong>ID da Conta:</strong> {{ account.accountId }}</p>
+      <p><strong>Saldo:</strong> R$ {{ account.balance }}</p>
+      <p><strong>Status:</strong>
+        <span [class.active]="account.status === 'ACTIVE'" 
+              [class.blocked]="account.status === 'BLOCKED'">
+          {{ account.status }}
+        </span>
+      </p>
+      <button class="btn secondary" (click)="loadAccount()">Atualizar Dados</button>
+
+      <div *ngIf="account.status === 'BLOCKED'" class="alert blocked-alert">
+        Conta bloqueada. Operações não permitidas.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COLUNA 2 – SAQUE E TRANSFERÊNCIA -->
+  <div class="column" *ngIf="account && account.status === 'ACTIVE'">
+    <h2 class="section-title">Operações</h2>
+
+    <div *ngIf="isAudit()" class="alert audit-alert">
+      Perfil AUDIT: apenas visualização.
+    </div>
+
+    <div *ngIf="isCustomer() || isAdmin()">
+
+      <!-- Saque -->
+      <h3 class="sub-title">Saque</h3>
+      <input type="number" [(ngModel)]="withdrawAmount" class="input" placeholder="Valor">
+      <button class="btn danger" (click)="handleWithdraw()">Sacar</button>
+
+      <hr class="divider">
+
+      <!-- Transferência -->
+      <h3 class="sub-title">Transferência</h3>
+      <input type="number" [(ngModel)]="amount" class="input" placeholder="Valor">
+      <input type="text" [(ngModel)]="targetAccountId" class="input" placeholder="Conta destino ACCXXXX">
+      <button class="btn success" (click)="handleTransfer()">Transferir</button>
+
+    </div>
+  </div>
+
+  <!-- COLUNA 3 – SENHA -->
+  <div class="column" *ngIf="account">
+    <h2 class="section-title">Segurança</h2>
+
+    <h3 class="sub-title">Trocar Senha</h3>
+    <input type="password" class="input" [(ngModel)]="oldPassword" placeholder="Senha atual">
+    <input type="password" class="input" [(ngModel)]="newPassword" placeholder="Nova senha">
+    <input type="password" class="input" [(ngModel)]="confirmNewPassword" placeholder="Confirmar nova senha">
+    <button class="btn primary" (click)="handleChangePassword()">Alterar Senha</button>
+
+  </div>
+
+</div>
