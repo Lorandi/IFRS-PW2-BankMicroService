@@ -37,15 +37,6 @@ public class AccountCustomerResource {
         return service.getByOwnerId();
     }
 
-    @PATCH
-    @Path("/{accountId}/deposit")
-    public Response deposit(
-            @PathParam("accountId") String accountId,
-            @QueryParam("amount") BigDecimal amount
-    ) {
-        service.deposit(accountId, amount);
-        return Response.ok(Map.of("message", "Depósito realizado com sucesso!")).build();
-    }
 
     @RolesAllowed("CUSTOMER")
     @PATCH

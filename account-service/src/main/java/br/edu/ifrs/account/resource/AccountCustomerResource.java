@@ -3,6 +3,7 @@ package br.edu.ifrs.account.resource;
 import br.edu.ifrs.account.dto.AccountDTO;
 import br.edu.ifrs.account.dto.AccountTransferDTO;
 import br.edu.ifrs.account.service.AccountCustomerService;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -53,6 +54,7 @@ public class AccountCustomerResource {
         }
     }
 
+    @PermitAll
     @PATCH
     @Path("/{accountId}/deposit")
     @Consumes(MediaType.APPLICATION_JSON)

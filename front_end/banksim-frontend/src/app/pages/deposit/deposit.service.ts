@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class DepositService {
 
-  private baseUrl = 'http://localhost:8080/orch/accounts/customer';
+  private baseUrl = 'http://localhost:8080/orch/accounts/deposit';
 
   constructor(private http: HttpClient) {}
 
