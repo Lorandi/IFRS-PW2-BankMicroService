@@ -1,0 +1,108 @@
+<div class="container">
+
+  <h2>Auditoria</h2>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+
+  <hr>
+
+  <!-- ====================================== -->
+  <!--              ACCOUNT AUDIT             -->
+  <!-- ====================================== -->
+  <h3>Auditoria de Contas</h3>
+
+  <div class="card">
+
+    <label>Buscar por AccountID</label>
+    <input type="text" [(ngModel)]="searchAccountId">
+    <button (click)="loadAccountAuditByAccountId()">Buscar</button>
+
+    <label>Buscar por Owner ID</label>
+    <input type="number" [(ngModel)]="searchOwnerId">
+    <button (click)="loadAccountAuditByOwner()">Buscar</button>
+
+    <label>Recentes (limite)</label>
+    <input type="number" [(ngModel)]="limitAccount">
+    <button (click)="loadRecentAccountAudits()">Buscar</button>
+
+    <button (click)="loadAccountAudits()">Listar Todas</button>
+
+    <div *ngIf="loadingAccounts" class="loading">Carregando...</div>
+
+    <table *ngIf="!loadingAccounts && accountAudits.length">
+      <tr>
+        <th>ID</th>
+        <th>Operation</th>
+        <th>Ação</th>
+        <th>Owner</th>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Valor</th>
+        <th>Resultado</th>
+        <th>Erro</th>
+        <th>Data</th>
+      </tr>
+
+      <tr *ngFor="let a of accountAudits">
+        <td>{{ a.id }}</td>
+        <td>{{ a.operationId }}</td>
+        <td>{{ a.action }}</td>
+        <td>{{ a.ownerId }}</td>
+        <td>{{ a.sourceAccountId }}</td>
+        <td>{{ a.targetAccountId }}</td>
+        <td>{{ a.amount }}</td>
+        <td>{{ a.result }}</td>
+        <td>{{ a.errorMessage }}</td>
+        <td>{{ a.timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <hr>
+
+  <!-- ====================================== -->
+  <!--              USER AUDIT                -->
+  <!-- ====================================== -->
+  <h3>Auditoria de Usuários</h3>
+
+  <div class="card">
+
+    <label>Buscar por Owner ID</label>
+    <input type="number" [(ngModel)]="searchOwnerUserId">
+    <button (click)="loadUserAuditByOwner()">Buscar</button>
+
+    <label>Recentes (limite)</label>
+    <input type="number" [(ngModel)]="limitUser">
+    <button (click)="loadRecentUserAudits()">Buscar</button>
+
+    <button (click)="loadUserAudits()">Listar Todas</button>
+
+    <div *ngIf="loadingUsers" class="loading">Carregando...</div>
+
+    <table *ngIf="!loadingUsers && userAudits.length">
+      <tr>
+        <th>ID</th>
+        <th>Operation</th>
+        <th>Ação</th>
+        <th>User ID</th>
+        <th>Resultado</th>
+        <th>Erro</th>
+        <th>Data</th>
+      </tr>
+
+      <tr *ngFor="let u of userAudits">
+        <td>{{ u.id }}</td>
+        <td>{{ u.operationId }}</td>
+        <td>{{ u.action }}</td>
+        <td>{{ u.userId }}</td>
+        <td>{{ u.result }}</td>
+        <td>{{ u.errorMessage }}</td>
+        <td>{{ u.timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>

@@ -1,0 +1,107 @@
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.card {
+  background: #f8f8f8;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 12px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 16px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 16px;
+  background: #0066ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 6px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #004ccc;
+}
+
+.error {
+  color: #b30000;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.success {
+  color: #007b00;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.loading {
+  text-align: center;
+  font-size: 14px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* ======== TABELAS ======== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+table th {
+  background: #e6e6e6;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+  white-space: nowrap;
+}
+
+table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+  background: #f5f5f5;
+}
+
+table tr:hover {
+  background: #e9f2ff;
+}
