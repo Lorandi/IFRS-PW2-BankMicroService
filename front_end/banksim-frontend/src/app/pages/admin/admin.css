@@ -1,0 +1,91 @@
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h3 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.loading {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background: #f5f5f5;
+}
+
+.active {
+  color: #0a7a00;
+  font-weight: bold;
+}
+
+.blocked {
+  color: #b00000;
+  font-weight: bold;
+}
+
+.btn-action {
+  padding: 8px 12px;
+  background: #0066ff;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-action:hover {
+  background: #004ecc;
+}
+
+.btn-refresh {
+  background: #555;
+  color: white;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: #b30000;
+  text-align: center;
+  font-weight: bold;
+}
+
+.success {
+  color: #007b00;
+  text-align: center;
+  font-weight: bold;
+}

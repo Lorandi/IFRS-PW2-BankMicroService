@@ -1,0 +1,103 @@
+<div class="container">
+
+  <h2>Painel do Administrador</h2>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+
+  <!-- ======================================= -->
+  <!--               CONTAS                    -->
+  <!-- ======================================= -->
+
+  <h3>Gerenciamento de Contas</h3>
+
+  <div *ngIf="loadingAccounts" class="loading">Carregando contas...</div>
+
+  <table class="table" *ngIf="!loadingAccounts">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Conta</th>
+        <th>Dono</th>
+        <th>Saldo</th>
+        <th>Status</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let acc of accounts">
+        <td>{{ acc.id }}</td>
+        <td>{{ acc.accountId }}</td>
+        <td>{{ acc.ownerId }}</td>
+        <td>R$ {{ acc.balance }}</td>
+
+        <td>
+          <span [class.active]="acc.status === 'ACTIVE'"
+                [class.blocked]="acc.status === 'BLOCKED'">
+            {{ acc.status }}
+          </span>
+        </td>
+
+        <td>
+          <button class="btn-action"
+                  (click)="toggleStatus(acc)"
+                  [disabled]="acc.processing">
+
+            {{ acc.processing
+                ? 'Processando...'
+                : (acc.status === 'ACTIVE' ? 'Bloquear' : 'Desbloquear')
+            }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- ======================================= -->
+  <!--               USUÁRIOS                  -->
+  <!-- ======================================= -->
+
+  <h3>Gerenciamento de Usuários</h3>
+
+  <div class="search-box">
+    <input type="text"
+           placeholder="Buscar por username"
+           [(ngModel)]="searchUsername">
+
+    <button (click)="searchByUsername()">Buscar</button>
+  </div>
+
+  <button class="btn-refresh" (click)="loadUsers()">Recarregar Lista</button>
+
+  <div *ngIf="loadingUsers" class="loading">Carregando usuários...</div>
+
+  <table class="table" *ngIf="!loadingUsers">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{ u.id }}</td>
+        <td>{{ u.username }}</td>
+
+        <td>
+          <select [(ngModel)]="u.role"
+                  (change)="changeRole(u.id, u.role)">
+            <option value="CUSTOMER">CUSTOMER</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="AUDITOR">AUDITOR</option>
+          </select>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>
