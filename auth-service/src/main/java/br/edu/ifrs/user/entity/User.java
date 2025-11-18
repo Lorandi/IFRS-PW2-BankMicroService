@@ -1,6 +1,7 @@
 package br.edu.ifrs.user.entity;
 
 import br.edu.ifrs.user.enums.RoleTypeEnum;
+import br.edu.ifrs.user.security.CryptoConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +26,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true, length = 11)
+    @Column(nullable = false, unique = true)
+    @Convert(converter = CryptoConverter.class)
     private String cpf;
 
     @Enumerated(EnumType.STRING)

@@ -63,6 +63,25 @@ public class UserService {
         }
     }
 
+    @Transactional
+    public User getUserById(Long id) {
+        String action = "GET_BY_ID";
+        try {
+            User user = repository.findByIdOptional(id)
+                    .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+
+            auditService.record(action, user.getId(), "SUCCESS", null);
+            LOG.infof("AUDIT | %s | userId=%d | result=SUCCESS", action, user.getId());
+
+            return user;
+
+        } catch (Exception e) {
+            auditService.record(action, id, "FAILURE", e.getMessage());
+            LOG.warnf("AUDIT | %s | userId=%d | result=FAILURE | msg=%s", action, id, e.getMessage());
+            throw e;
+        }
+    }
+
     // --- READ BY USERNAME ---
     @Transactional
     public UserMinDTO getByUsername(String username) {
