@@ -80,7 +80,7 @@ export class AuthComponent {
   }
 
   if (groups.includes('AUDITOR')) {
-    this.router.navigate(['/auditor']);
+    this.router.navigate(['/audit']);
     return;
   }
 
