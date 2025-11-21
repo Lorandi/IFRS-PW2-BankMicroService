@@ -40,3 +40,6 @@ quarkus.http.cors.allow-credentials=true
 #quarkus.http.cors.origins=*
 #quarkus.http.cors.methods=*
 #quarkus.http.cors.headers=*
+
+pw2.message=hello
+pw2.name=mosquito
