@@ -1,6 +1,5 @@
 package br.edu.ifrs.orch.resource;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
