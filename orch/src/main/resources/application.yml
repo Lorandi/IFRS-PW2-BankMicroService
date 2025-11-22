@@ -35,6 +35,9 @@ quarkus:
     devservices:
       enabled: false
 
+  smallrye-metrics:
+    enabled: true
+
 mp:
   jwt:
     verify:

@@ -5,6 +5,7 @@ import br.edu.ifrs.orch.client.UsersHealthClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.json.JsonObject;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @ApplicationScoped
@@ -19,6 +20,7 @@ public class HealthOrchService {
     UsersHealthClient usersHealthClient;
 
 
+    @Timed(name = "orch_account_ping_time", description = "Tempo para consultar health do account-service")
     public boolean isAccountAlive() {
         return checkUp(() -> accountHealthClient.getLiveness());
     }
@@ -28,6 +30,8 @@ public class HealthOrchService {
     }
 
 
+//    http://localhost:8080/q/metrics/application
+    @Timed(name = "orch_user_ping_time", description = "Tempo para consultar health do auth-service")
     public boolean isUsersAlive() {
         return checkUp(() -> usersHealthClient.getLiveness());
     }
