@@ -8,7 +8,6 @@ quarkus:
       headers: "Accept,Authorization,Content-Type,Origin,X-Requested-With"
       exposed-headers: "Content-Type,Authorization"
       access-control-max-age: 24H
-      allow-credentials: true
 
   smallrye-jwt:
     enabled: true
@@ -17,13 +16,36 @@ quarkus:
     console:
       json: false
       enable: true
-      format: "%d{HH:mm:ss} %highlight{%-5p} [%c{1}] %s%e%n"
+#      format: "%d{HH:mm:ss} %highlight{%-5p} [%c{1}] %s%e%n"
+      format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, spanId=%X{spanId} [%c] %s%e%n"
     level: INFO
     category:
       io.smallrye.jwt:
         level: INFO
       io.quarkus.security:
         level: INFO
+    #############################
+    # 📘 Graylog (GELF)
+    #############################
+    handler:
+      gelf:
+        enabled: true
+        host: localhost
+        port: 12201
+        include-full-mdc: true
+
+
+#  http://localhost:16686/
+  otel:
+    service:
+      name: orch-service
+    exporter:
+      otlp:
+        traces:
+          endpoint: http://localhost:4317
+          protocol: grpc
+    traces:
+      sampler: always_on
 
   rest-client:
     auth-api:

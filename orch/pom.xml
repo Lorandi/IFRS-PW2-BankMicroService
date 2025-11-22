@@ -54,10 +54,10 @@
         </dependency>
 
         <!-- Logs estruturados (para auditoria) -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-logging-json</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus</groupId>-->
+<!--            <artifactId>quarkus-logging-json</artifactId>-->
+<!--        </dependency>-->
 
         <!-- Lombok -->
         <dependency>
@@ -124,6 +124,16 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-fault-tolerance</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-opentelemetry</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-logging-gelf</artifactId>
         </dependency>
 
 
